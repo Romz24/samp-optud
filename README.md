@@ -6,7 +6,6 @@ This include will call OnPlayerTurnUpsideDown callback in case the player turns 
 public OnPlayerTurnUpsideDown(playerid, &Float:quat)
 ```
 
-*Returning 0 won't let the update reach other clients.<br>
 *You can change the quaternion value passed by reference.
 
 ## Dependencies:
