@@ -18,7 +18,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
 		BS_IgnoreBits(bs, 0x8);
 		BS_ReadOnFootSync(bs, ARQ_onFootSync);
 		
-		if(floatabs(ARQ_onFootSync[PR_quaternion][1]) >= 1.00)
+		if(floatabs(ARQ_onFootSync[PR_quaternion][1]) >= 0.85)
 		{
 			OnPlayerTurnUpsideDown(playerid, ARQ_onFootSync[PR_quaternion][1]);
 		}
