@@ -3,10 +3,10 @@ This include will call OnPlayerTurnUpsideDown callback in case the player turns 
 
 ## Callback:
 ```pawn
-public OnPlayerTurnUpsideDown(playerid, &Float:quat)
+public OnPlayerTurnUpsideDown(playerid, &Float:quat1, &Float:quat2)
 ```
 
-*You can change the quaternion value passed by reference.
+*You can change the quaternions passed by reference.
 
 ## Dependencies:
 [Pawn.RakNet](http://forum.sa-mp.com/showthread.php?t=640306)
