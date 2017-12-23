@@ -20,7 +20,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
 		
 		if(floatabs(ARQ_onFootSync[PR_quaternion][1]) >= 0.85 || floatabs(ARQ_onFootSync[PR_quaternion][2]) >= 0.85)
 		{
-			OnPlayerTurnUpsideDown(playerid, ARQ_onFootSync[PR_quaternion][1], ARQ_onFootSync[PR_quaternion][1]);
+			OnPlayerTurnUpsideDown(playerid, ARQ_onFootSync[PR_quaternion][1], ARQ_onFootSync[PR_quaternion][2]);
 		}
 		
 		BS_SetWriteOffset(bs, 0x8);
