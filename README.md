@@ -6,7 +6,7 @@ This include will call OnPlayerTurnUpsideDown callback in case the player turns 
 public OnPlayerTurnUpsideDown(playerid, &Float:quat1, &Float:quat2)
 ```
 
-*You can change the quaternions passed by reference.<br>
+*You can change the quaternions passed components by reference.<br>
 
 *Upside Down and Random Quats from sandbox will call this callback.<br>
 *Parkour mods will call this callback as well as any other mod that turns players upside down.
