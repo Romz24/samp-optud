@@ -8,8 +8,7 @@ public OnPlayerTurnUpsideDown(playerid, &Float:quat1, &Float:quat2)
 
 *You can change the player quaternion's passed components by reference (quat1 is the 2nd component and quat2 the 3rd).<br>
 
-*Upside Down and Random Quats from sandbox will call this callback.<br>
-*Parkour mods will call this callback as well as any other mod that turns players upside down.
+*Upside Down and Random Quats from sandbox will call this callback.
 
 ## Dependencies:
 [Pawn.RakNet](http://forum.sa-mp.com/showthread.php?t=640306)
