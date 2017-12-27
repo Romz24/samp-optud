@@ -8,7 +8,7 @@ OnPlayerTurnUpsideDown.
 #define _OPTUD_included
 
 #if ! defined PAWNRAKNET_INC_
-    #error You must have Pawn.Raknet include in order to use this one.
+    #error You must have Pawn.RakNet include in order to use this one.
 #endif
 
 forward OnPlayerTurnUpsideDown(playerid, Float:angle);
