@@ -5,7 +5,7 @@ This include will call OnPlayerTurnUpsideDown callback in case the player turns 
 ```pawn
 public OnPlayerTurnUpsideDown(playerid, Float:angle)
 ```
-*Upside Down and Random Quats from sandbox will call this callback.</br>
+*Upside Down (https://imgur.com/a/FuXkD) and Random Quats from sandbox will call this callback.</br>
 *Parkour mods or any other modification that turns the player upside down will call this callback.
 
 ## Dependencies:
