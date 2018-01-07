@@ -21,8 +21,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
     if(packetid == 0xCF)
     {
         new ARQ_onFootSync[PR_OnFootSync];
-
-        BS_ResetReadPointer(bs);
+        
         BS_IgnoreBits(bs, 0x8);
         BS_ReadOnFootSync(bs, ARQ_onFootSync);
             
@@ -39,6 +38,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
                 }    
             }
         }
+        BS_ResetReadPointer(bs);
     }
     #if defined ARQ_OnIncomingPacket
         return ARQ_OnIncomingPacket(playerid, packetid, bs);
