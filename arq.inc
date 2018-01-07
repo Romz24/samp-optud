@@ -22,6 +22,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
     {
         new ARQ_onFootSync[PR_OnFootSync];
 
+        BS_ResetReadPointer(bs);
         BS_IgnoreBits(bs, 0x8);
         BS_ReadOnFootSync(bs, ARQ_onFootSync);
             
