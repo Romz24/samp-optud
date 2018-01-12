@@ -13,35 +13,43 @@ OnPlayerTurnUpsideDown.
 
 forward OnPlayerTurnUpsideDown(playerid, Float:angle);
 
-static ARQ_callback[MAX_PLAYERS];
+static OPTUD_callback[MAX_PLAYERS];
 
 /*OnIncomingPacket*/
 public OnIncomingPacket(playerid, packetid, BitStream:bs)
 {
     if(packetid == 0xCF)
     {
-        new ARQ_onFootSync[PR_OnFootSync];
+        new Float:OPTUD_w, Float:OPTUD_x, Float:OPTUD_y, Float:OPTUD_z;
         
-        BS_IgnoreBits(bs, 0x8);
-        BS_ReadOnFootSync(bs, ARQ_onFootSync);
+        BS_SetReadOffset(bs, 0x98);
+		
+		BS_ReadValue(
+			bs,
+			PR_FLOAT, OPTUD_w,
+			PR_FLOAT, OPTUD_x,
+			PR_FLOAT, OPTUD_y,
+			PR_FLOAT, OPTUD_z
+		);
+			
+		BS_ResetReadPointer(bs);
             
-        new const Float:ARQ_angle = atan2(2 * ((ARQ_onFootSync[PR_quaternion][2] * ARQ_onFootSync[PR_quaternion][3]) + (ARQ_onFootSync[PR_quaternion][0] * ARQ_onFootSync[PR_quaternion][1])), (ARQ_onFootSync[PR_quaternion][0] * ARQ_onFootSync[PR_quaternion][0]) - (ARQ_onFootSync[PR_quaternion][1] * ARQ_onFootSync[PR_quaternion][1]) - (ARQ_onFootSync[PR_quaternion][2] * ARQ_onFootSync[PR_quaternion][2]) + (ARQ_onFootSync[PR_quaternion][3] * ARQ_onFootSync[PR_quaternion][3]));
-        
+        new const Float:OPTUD_angle = atan2(2 * ((OPTUD_y * OPTUD_z) + (OPTUD_w * OPTUD_x)), (OPTUD_w * OPTUD_w) - (OPTUD_x * OPTUD_x) - (OPTUD_y * OPTUD_y) + (OPTUD_z * OPTUD_z));
+		
         if(GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_NONE) 
         {
-            if(ARQ_angle > 85.0 || ARQ_angle < -85.0)
+            if((OPTUD_angle > 85.0 || OPTUD_angle < -85.0) && OPTUD_angle == OPTUD_angle)
             {
-                if(gettime() > ARQ_callback[playerid])
+                if(gettime() > OPTUD_callback[playerid])
                 {
-                    ARQ_callback[playerid] = gettime();
-                    OnPlayerTurnUpsideDown(playerid, ARQ_angle);
+                    OPTUD_callback[playerid] = gettime();
+                    OnPlayerTurnUpsideDown(playerid, OPTUD_angle);
                 }    
             }
         }
-        BS_ResetReadPointer(bs);
     }
-    #if defined ARQ_OnIncomingPacket
-        return ARQ_OnIncomingPacket(playerid, packetid, bs);
+    #if defined OPTUD_OnIncomingPacket
+        return OPTUD_OnIncomingPacket(playerid, packetid, bs);
     #else
         return 1;
     #endif
@@ -53,8 +61,8 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
 #else
 #define _ALS_OnIncomingPacket
 #endif
-#define OnIncomingPacket ARQ_OnIncomingPacket
+#define OnIncomingPacket OPTUD_OnIncomingPacket
 
-#if defined ARQ_OnIncomingPacket
-forward ARQ_OnIncomingPacket(playerid, packetid, BitStream:bs);
+#if defined OPTUD_OnIncomingPacket
+forward OPTUD_OnIncomingPacket(playerid, packetid, BitStream:bs);
 #endif
