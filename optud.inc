@@ -14,6 +14,7 @@ OnPlayerTurnUpsideDown.
 forward OnPlayerTurnUpsideDown(playerid, Float:angle);
 
 static OPTUD_callback[MAX_PLAYERS];
+
 /*OnIncomingPacket*/
 public OnIncomingPacket(playerid, packetid, BitStream:bs)
 {
