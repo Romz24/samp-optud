@@ -1,14 +1,18 @@
 /*
 OnPlayerTurnUpsideDown.
 */
+
 #if defined _OPTUD_included
     #endinput
 #endif
 #define _OPTUD_included
+
 #if ! defined PAWNRAKNET_INC_
     #error You must have Pawn.Raknet include in order to use this one.
 #endif
+
 forward OnPlayerTurnUpsideDown(playerid, Float:angle);
+
 static OPTUD_callback[MAX_PLAYERS];
 /*OnIncomingPacket*/
 public OnIncomingPacket(playerid, packetid, BitStream:bs)
@@ -49,6 +53,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
         return 1;
     #endif
 }
+
 /*Hooks*/
 #if defined _ALS_OnIncomingPacket
 #undef OnIncomingPacket
@@ -56,6 +61,7 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
 #define _ALS_OnIncomingPacket
 #endif
 #define OnIncomingPacket OPTUD_OnIncomingPacket
+
 #if defined OPTUD_OnIncomingPacket
 forward OPTUD_OnIncomingPacket(playerid, packetid, BitStream:bs);
 #endif
