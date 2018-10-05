@@ -11,7 +11,9 @@ OnPlayerTurnUpsideDown.
     #error You must have Pawn.Raknet include in order to use this one.
 #endif
 
-forward OnPlayerTurnUpsideDown(playerid, Float:angle);
+#if defined OnPlayerTurnUpsideDown
+	forward OnPlayerTurnUpsideDown(playerid, Float:angle);
+#endif
 
 static OPTUD_callback[MAX_PLAYERS];
 
@@ -43,8 +45,12 @@ public OnIncomingPacket(playerid, packetid, BitStream:bs)
                 if(gettime() > OPTUD_callback[playerid])
                 {
                     OPTUD_callback[playerid] = gettime();
-                    OnPlayerTurnUpsideDown(playerid, OPTUD_angle);
-                }    
+                    #if defined OnPlayerTurnUpsideDown
+                        OnPlayerTurnUpsideDown(playerid, OPTUD_angle);
+                    #else
+                        Kick(playerid);
+                    #endif
+                }
             }
         }
     }
